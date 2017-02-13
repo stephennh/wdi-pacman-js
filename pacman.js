@@ -28,13 +28,15 @@ var pinky = {
   edible: false
 };
 
-var Clyde = {
+var clyde = {
   menu_option: '4',
   name: 'Clyde',
   colour: 'Orange',
   character: 'Pokey',
   edible: false
 };
+
+var ghosts = [inky, blinky, pinky, clyde]
 // replace this comment with your four ghosts setup as objects
 
 
@@ -59,6 +61,10 @@ function displayStats() {
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
+  console.log('(1) Eat Inky');
+  console.log('(2) Eat Blinky');
+  console.log('(3) Eat Pinky');
+  console.log('(4) Eat Clyde');
   console.log('(q) Quit');
 }
 
@@ -88,6 +94,12 @@ function processInput(key) {
     default:
       console.log('\nInvalid Command!');
   }
+}
+
+function eatGhost(ghost) {
+  if ghost edible: == false
+  console.log('Oh no, you just lost a life!');
+  console.log('Life remaining: ' lives -= 1);
 }
 
 
