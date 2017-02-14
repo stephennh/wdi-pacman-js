@@ -1,9 +1,11 @@
 // Setup initial game stats
 var score = 0;
 var lives = 2;
+// 5a. powerPellets variable
+var powerPellets = 4;
 
 
-// Define your ghosts here
+// 3a. Define your ghosts here
 var inky = {
   menu_option: '1',
   name: 'Inky',
@@ -36,7 +38,8 @@ var clyde = {
   edible: false
 };
 
-var ghosts = [inky, blinky, pinky, clyde]
+// 3b. Ghosts array
+var ghosts = [inky, blinky, pinky, clyde];
 // replace this comment with your four ghosts setup as objects
 
 
@@ -58,13 +61,33 @@ function displayStats() {
   console.log('Score: ' + score + '     Lives: ' + lives);
 }
 
+// 3c/5b Add Ghosts to the Menu
 function displayMenu() {
   console.log('\n\nSelect Option:\n');  // each \n creates a new line
   console.log('(d) Eat Dot');
-  console.log('(1) Eat Inky');
-  console.log('(2) Eat Blinky');
-  console.log('(3) Eat Pinky');
-  console.log('(4) Eat Clyde');
+  if (powerPellets > 0) {
+  console.log('(p) Eat Power-Pellet');
+  }
+  if (inky.edible === true) {
+  console.log('(1) Eat Inky(edible)');
+  } else {
+  console.log('(1) Eat Inky(inedible)');
+  }
+  if (blinky.edible === true) {
+  console.log('(2) Eat Blinky(edible)');
+  } else {
+  console.log('(2) Eat Blinky(inedible)'
+  }
+  if (pinky.edible === true) {
+  console.log('(3) Eat Pinky(edible)');
+  } else {
+  console.log('(3) Eat Pinky(inedible)');
+  }
+  if (clyde.edible === true) {
+  console.log('(4) Eat Clyde(edible)');
+  } else {
+  console.log('(4) Eat Clyde(inedible)');
+  }
   console.log('(q) Quit');
 }
 
@@ -80,6 +103,18 @@ function eatDot() {
   score += 10;
 }
 
+// 5c. Process Power-Pellets
+function eatPowerPellet() {
+  ghost.edible = true;
+  powerPellets -= 1;
+  score += 50;
+  // 5d.
+  if (powerPellets === 0) {
+
+    console.log('No Power-Pellets left!');
+  }
+}
+
 
 // Process Player's Input
 function processInput(key) {
@@ -88,6 +123,10 @@ function processInput(key) {
     case 'q':
       process.exit();
       break;
+    // 5c. executes p key
+    case 'p':
+      eatPowerPellet();
+      break;
     case 'd':
       eatDot();
       break;
@@ -95,12 +134,27 @@ function processInput(key) {
       console.log('\nInvalid Command!');
   }
 }
-
+// 3d. Process Eating an Inedible Ghost
 function eatGhost(ghost) {
-  if ghost edible: == false
-  console.log('Oh no, you just lost a life!');
-  console.log('Life remaining: ' lives -= 1);
+  if (ghost.edible == false) {
+    lives --
+    console.log(ghost.name + 'with a colour of ' + ghost.colour + 'has killed you!');
+  } else {
+    ghost.edible = true;
+    console.log('\nPac-Man ate ' + ghost.name + '!');
+  }
 }
+
+// 4. Process Game Over
+function gameOver() {
+  if (lives <= 0) {
+    console.log('\n\nGame Over!\n');
+    process.exit()
+  }
+}
+
+
+
 
 
 //
